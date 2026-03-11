@@ -1,0 +1,175 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Boletín Estudiantil 2025</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background-color: #f0f2f5;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+    }
+    .boletin {
+      background-color: white;
+      width: 100%;
+      max-width: 500px;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      border-top: 10px solid #2c3e50;
+    }
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+      margin-bottom: 5px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .sub {
+      text-align: center;
+      color: #7f8c8d;
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+    hr { border: 0; border-top: 1px solid #eee; margin: 15px 0; }
+    p { margin: 10px 0; font-size: 16px; color: #34495e; }
+    
+    /* Caja de notas extremas */
+    .caja-notas {
+      background-color: #f8fafc;
+      padding: 15px;
+      border-radius: 10px;
+      border-left: 5px solid #64748b;
+      margin: 15px 0;
+    }
+
+    /* ESTILO PARA LA ADVERTENCIA DE RIESGO */
+    .alerta-riesgo {
+      background-color: #fff7ed;
+      color: #9a3412;
+      border: 1px solid #fdba74;
+      padding: 10px;
+      border-radius: 8px;
+      margin: 15px 0;
+      font-weight: bold;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+       }
+
+    /* Estilos de los resultados según desempeño */
+    .resultado-final {
+      text-align: center;
+      padding: 20px;
+      border-radius: 10px;
+      margin-top: 20px;
+      font-weight: bold;
+    }
+    .excelente { background-color: #dcfce7; color: #166534; border: 1px solid #bbf7d0; }
+    .sobresaliente { background-color: #dbeafe; color: #1e40af; border: 1px solid #bfdbfe; }
+    .aceptable { background-color: #fef3c7; color: #92400e; border: 1px solid #fde68a; }
+    .insuficiente { background-color: #fee2e2; color: #991b1b; border: 1px solid #fecaca; }
+  </style>
+</head>
+<body>
+
+
+<div class="boletin" id="boletin">
+  </div>
+
+<script>
+  // 1. Captura de datos personales
+  let nombre = prompt("Nombre completo del estudiante:");
+  let documento = prompt("Número de documento:");
+  let grado = prompt("Grado:");
+  let materia = prompt("Materia:");
+
+  // 2. Captura de notas (parseFloat convierte el texto en número decimal)
+  let n1 = parseFloat(prompt("Ingrese Nota 1 (0 a 5):"));
+  let n2 = parseFloat(prompt("Ingrese Nota 2 (0 a 5):"));
+  let n3 = parseFloat(prompt("Ingrese Nota 3 (0 a 5):"));
+
+  // 3. Cálculos matemáticos
+  let promedio = (n1 + n2 + n3) / 3;  
+  let notaAlta = Math.max(n1, n2, n3);
+  let notaBaja = Math.min(n1, n2, n3);
+
+  // 1. Lógica de Riesgo (NUEVA)
+  let alertaHtml = "";
+  if (n1 <= 2.0 || n2 <= 2.0 || n3 <= 2.0) {
+      alertaHtml = `
+        <div class="alerta-riesgo">
+          ⚠️ Advertencia: tiene notas en riesgo académico.
+        </div>
+      `;
+      } 
+
+
+
+
+
+  // 4. Lógica de desempeño por rangos
+  let desempeno = "";
+  let claseCss = "";
+  let mensaje = "";
+
+  if (promedio >= 4.5 && promedio <= 5.0) {
+      desempeno = "EXCELENTE";
+      claseCss = "excelente";
+      mensaje = "¡Felicidades! Eres un orgullo.";
+  } else if (promedio >= 4.0 && promedio < 4.5) {
+      desempeno = "SOBRESALIENTE";
+      claseCss = "sobresaliente";
+      mensaje = "¡Muy bien! Sigue así.";
+  } else if (promedio >= 3.0 && promedio < 3.9) {
+      desempeno = "ACEPTABLE";
+      claseCss = "aceptable";
+      mensaje = "Aprobaste, pero puedes mejorar.";
+  } else if (promedio >= 0.0 && promedio < 2.9) { 
+      desempeno = "INSUFICIENTE";
+      claseCss = "insuficiente";
+      mensaje = "Lo sentimos, has reprobado.";
+       }
+      else {
+      desempeno = "INSUFICIENTE";
+      claseCss = "insuficiente";
+      mensaje = "Lo sentimos, has reprobado.";
+      }
+   
+
+  // 5. Inyectar el código en el HTML
+  document.getElementById("boletin").innerHTML = `
+    <h1>Boletín Escolar</h1>
+    <div class="sub">REGISTRO ACADÉMICO 2025</div>
+    <hr>
+    <p><b>Estudiante:</b> ${nombre}</p>
+    <p><b>Documento:</b> ${documento}</p>
+    <p><b>Grado:</b> ${grado}</p>
+    <p><b>Materia:</b> ${materia}</p>
+    <hr>
+    <p>Nota 1: <b>${n1.toFixed(1)}</b></p>
+    <p>Nota 2: <b>${n2.toFixed(1)}</b></p>
+    <p>Nota 3: <b>${n3.toFixed(1)}</b></p>
+
+    ${alertaHtml} <div class="caja-notas">
+    
+    <div class="caja-notas">
+      <p style="margin:0">🔝 Nota más alta: <b>${notaAlta.toFixed(1)}</b></p>
+      <p style="margin:0">🔻 Nota más baja: <b>${notaBaja.toFixed(1)}</b></p>
+    </div>
+
+    <p style="font-size: 18px">Promedio Final: <b>${promedio.toFixed(2)}</b></p>
+    
+    <div class="resultado-final ${claseCss}">
+      DESEMPEÑO: ${desempeno}<br>
+      <small>${mensaje}</small>
+    </div>
+  `;
+</script>
+
+</body>
+</html>
