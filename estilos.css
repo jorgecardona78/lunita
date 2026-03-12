@@ -1,0 +1,97 @@
+*
+body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: sans-serif;
+        }
+
+        /* Contenedor principal que divide la pantalla */
+        .main-contenedor {
+            display: flex;
+            height: 100vh;
+            width: 100%;
+        }
+
+        /* Lado Izquierdo: Formulario */
+        .lado_izquierdo {
+            width: 40%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            background-color: #ffffff;
+        }
+
+        /* Lado Derecho: Foto completa */
+        .lado_derecho {
+            width: 60%;
+            background-image: url('../img/imagendecampus.jpg'); /* Foto de ejemplo */
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Elementos del formulario */
+        .form-box {
+            width: 100%;
+            max-width: 350px;
+        }
+
+        .foto_de_talentotech {
+            width: 200px;
+            height: 80px;
+            border-top: 50%;
+            background-color: #ddd;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .foto_de_talentotech img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .titulo {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        .input-label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box; /* Para que el padding no agrande el div */
+        }
+
+        .boton_ingresar {
+            width: 100%;
+            padding: 12px;
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        .boton_ingresar:hover {
+            background-color: #0056b3;
+        }
+    
